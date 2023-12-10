@@ -1,26 +1,14 @@
 <div>
   <div>
-    <select>
-      <option>option 1</option>
-      <option>option 2</option>
+    <select [(ngModel)]="selectedModeId">
+      <option value="" disabled>Pick mode</option>
+      <option *ngFor="let mode of modes" [value]="mode.id">{{ mode.name }}</option>
     </select>
-    <button>START</button>
+    <button (click)="onStart()">START</button>
   </div>
   <div>
-    <div>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
-    </div>
-    <div>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
-    </div>
-    <div>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
-      <app-cell></app-cell>
+    <div *ngFor="let row of [].constructor(size)">
+      <app-cell *ngFor="let col of [].constructor(size)"></app-cell>
     </div>
   </div>
 </div>
