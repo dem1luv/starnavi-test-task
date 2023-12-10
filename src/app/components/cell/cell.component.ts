@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -12,9 +12,10 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CellComponent {
-  public isHovered: boolean = false;
+  @Input() public isHovered: boolean = false;
+  @Output() public onHover: EventEmitter<void> = new EventEmitter<void>();
 
-  onMouseEnter(): void {
-    this.isHovered = !this.isHovered;
+  public onMouseEnter(): void {
+    this.onHover.emit();
   }
 }

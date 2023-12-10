@@ -2,20 +2,29 @@
   <div>
     <select [(ngModel)]="selectedModeId">
       <option value="" disabled>Pick mode</option>
-      <option *ngFor="let mode of modes" [value]="mode.id">{{ mode.name }}</option>
+      @for (mode of modes; track mode.id) {
+        <option [value]="mode.id">{{ mode.name }}</option>
+      }
     </select>
     <button (click)="onStart()">START</button>
   </div>
-  <div class="grid-container" [style.grid-template-columns]="size">
-    <div *ngFor="let row of [].constructor(size)" class="grid-row">
-      <app-cell *ngFor="let col of [].constructor(size)"></app-cell>
-    </div>
+  <div class="grid-container">
+    @for (row of grid; track rowIndex; let rowIndex = $index) {
+      <div class="grid-row">
+        @for (col of row; track colIndex; let colIndex = $index) {
+          <app-cell [isHovered]="col" (onHover)="onCellHover(rowIndex, colIndex)"></app-cell>
+        }
+      </div>
+    }
   </div>
 </div>
 <div>
   <h2>Hover Squares</h2>
-  <ul>
-    <li>item 1</li>
-    <li>item 2</li>
+  <ul class="list-decimal">
+    @for (row of grid; track rowIndex; let rowIndex = $index) {
+      @for (col of row; track colIndex; let colIndex = $index) {
+        <li *ngIf="col" class="bg-amber-300">row {{ rowIndex + 1 }} col {{ colIndex + 1 }}</li>
+      }
+    }
   </ul>
 </div>

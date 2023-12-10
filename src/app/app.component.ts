@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CellComponent } from './components/cell/cell.component';
 import { Mode } from './types/mode.interface';
@@ -14,14 +14,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  isHovered: boolean = false;
   public modes: Mode[] = [];
-  public size: number = 5;
-
+  public grid: boolean[][] = [];
   public selectedModeId: string = '';
 
   constructor(
-    private readonly modeService: ModeService
+    private readonly modeService: ModeService,
+    private readonly cdr: ChangeDetectorRef
   ) {
   }
 
@@ -35,6 +34,17 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.size = mode.field;
+    this.grid = [];
+    for (let row = 0; row < mode.field; row++) {
+      this.grid[row] = [];
+      for (let column = 0; column < mode.field; column++) {
+        this.grid[row][column] = false;
+      }
+    }
+    this.cdr.detectChanges();
+  }
+
+  onCellHover(row: number, col: number) {
+    this.grid[row][col] = !this.grid[row][col];
   }
 }
