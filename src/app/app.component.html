@@ -1,46 +1,13 @@
 <div class="flex max-h-screen p-5 gap-24 h-screen">
   <div class="w-5/12">
-    <div class="flex gap-2 mb-8">
-      <select
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          [(ngModel)]="selectedModeId"
-      >
-        <option value="" disabled>Pick mode</option>
-        @for (mode of modes;track mode.id) {
-          <option [value]="mode.id">{{ mode.name }}</option>
-        }
-      </select>
-      <button
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
-          (click)="onStart()"
-      >
-        START
-      </button>
-    </div>
+    <app-start-form [modes]="modes" (start)="onStart($event)"></app-start-form>
+      @if (grid) {
+        <app-grid [grid]="grid" (cellHover)="onCellHover($event)"></app-grid>
+      }
+  </div>
+  <div class="w-5/12">
     @if (grid) {
-      <div class="grid-container">
-        @for (row of grid;track rowIndex;let rowIndex = $index) {
-          <div class="grid-row">
-            @for (col of row;track colIndex;let colIndex = $index) {
-              <app-cell [isHovered]="col" (onHover)="onCellHover(rowIndex, colIndex)"></app-cell>
-            }
-          </div>
-        }
-      </div>
+      <app-hover-squares [grid]="grid"></app-hover-squares>
     }
   </div>
-  @if (grid) {
-    <div class="w-5/12 flex flex-col">
-      <h2 class="text-3xl font-bold mb-6">Hover Squares</h2>
-      <ul class="overflow-auto flex gap-2 flex-col pe-2">
-        @for (row of grid;track rowIndex;let rowIndex = $index) {
-          @for (col of row;track colIndex;let colIndex = $index) {
-            <li *ngIf="col" class="border-2 border-amber-500 text-amber-950 bg-amber-200 py-4 px-2 rounded-lg">
-              row {{ rowIndex + 1 }} col {{ colIndex + 1 }}
-            </li>
-          }
-        }
-      </ul>
-    </div>
-  }
 </div>

@@ -1,0 +1,17 @@
+<div class="flex gap-2 mb-8">
+  <select
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      [(ngModel)]="selectedModeId"
+  >
+    <option value="" disabled>Pick mode</option>
+    @for (mode of modes;track mode.id) {
+      <option [value]="mode.id">{{ mode.name }}</option>
+    }
+  </select>
+  <button
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+      (click)="onStart()"
+  >
+    START
+  </button>
+</div>

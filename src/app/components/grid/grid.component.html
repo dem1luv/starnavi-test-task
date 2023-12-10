@@ -1,0 +1,9 @@
+<div class="grid-container">
+  @for (row of grid;track rowIndex;let rowIndex = $index) {
+    <div class="grid-row">
+      @for (col of row;track colIndex;let colIndex = $index) {
+        <app-cell [isHovered]="col" (onHover)="onCellHover(rowIndex, colIndex)"></app-cell>
+      }
+    </div>
+  }
+</div>
