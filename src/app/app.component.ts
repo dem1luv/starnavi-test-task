@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CellComponent } from './components/cell/cell.component';
 import { Mode } from './types/mode.interface';
@@ -15,17 +15,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   public modes: Mode[] = [];
-  public grid!: boolean[][];
   public selectedModeId: string = '';
 
+  public grid!: boolean[][];
+
   constructor(
-    private readonly modeService: ModeService,
-    private readonly cdr: ChangeDetectorRef
+    private readonly modeService: ModeService
   ) {
   }
 
   public ngOnInit(): void {
-    this.modeService.getModes().pipe(take(1)).subscribe(modes => this.modes = modes);
+    this.getModes();
   }
 
   public onStart(): void {
@@ -41,10 +41,13 @@ export class AppComponent implements OnInit {
         this.grid[row][column] = false;
       }
     }
-    this.cdr.detectChanges();
   }
 
-  onCellHover(row: number, col: number) {
+  public onCellHover(row: number, col: number): void {
     this.grid[row][col] = !this.grid[row][col];
+  }
+
+  private getModes(): void {
+    this.modeService.getModes().pipe(take(1)).subscribe(modes => this.modes = modes);
   }
 }
