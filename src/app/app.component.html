@@ -6,8 +6,8 @@
     </select>
     <button (click)="onStart()">START</button>
   </div>
-  <div>
-    <div *ngFor="let row of [].constructor(size)">
+  <div class="grid-container" [style.grid-template-columns]="size">
+    <div *ngFor="let row of [].constructor(size)" class="grid-row">
       <app-cell *ngFor="let col of [].constructor(size)"></app-cell>
     </div>
   </div>

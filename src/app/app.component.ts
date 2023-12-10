@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CellComponent } from './components/cell/cell.component';
 import { Mode } from './types/mode.interface';
@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  isHovered: boolean = false;
   public modes: Mode[] = [];
   public size: number = 5;
 

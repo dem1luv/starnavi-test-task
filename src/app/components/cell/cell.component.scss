@@ -1,0 +1,17 @@
+:host {
+  flex: 1;
+  position: relative;
+}
+
+.cell {
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    border: 1px solid black;
+  }
+
+  &.hovered {
+    background-color: #4e4eff;
+  }
+}
