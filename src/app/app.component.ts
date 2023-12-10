@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   public modes: Mode[] = [];
-  public grid: boolean[][] = [];
+  public grid!: boolean[][];
   public selectedModeId: string = '';
 
   constructor(

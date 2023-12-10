@@ -17,26 +17,30 @@
         START
       </button>
     </div>
-    <div class="grid-container">
-      @for (row of grid;track rowIndex;let rowIndex = $index) {
-        <div class="grid-row">
-          @for (col of row;track colIndex;let colIndex = $index) {
-            <app-cell [isHovered]="col" (onHover)="onCellHover(rowIndex, colIndex)"></app-cell>
-          }
-        </div>
-      }
-    </div>
-  </div>
-  <div class="w-5/12 flex flex-col">
-    <h2 class="text-3xl font-bold mb-6">Hover Squares</h2>
-    <ul class="overflow-auto flex gap-2 flex-col pe-2">
-      @for (row of grid;track rowIndex;let rowIndex = $index) {
-        @for (col of row;track colIndex;let colIndex = $index) {
-          <li *ngIf="col" class="border-2 border-amber-500 text-amber-950 bg-amber-200 py-4 px-2 rounded-lg">
-            row {{ rowIndex + 1 }} col {{ colIndex + 1 }}
-          </li>
+    @if (grid) {
+      <div class="grid-container">
+        @for (row of grid;track rowIndex;let rowIndex = $index) {
+          <div class="grid-row">
+            @for (col of row;track colIndex;let colIndex = $index) {
+              <app-cell [isHovered]="col" (onHover)="onCellHover(rowIndex, colIndex)"></app-cell>
+            }
+          </div>
         }
-      }
-    </ul>
+      </div>
+    }
   </div>
+  @if (grid) {
+    <div class="w-5/12 flex flex-col">
+      <h2 class="text-3xl font-bold mb-6">Hover Squares</h2>
+      <ul class="overflow-auto flex gap-2 flex-col pe-2">
+        @for (row of grid;track rowIndex;let rowIndex = $index) {
+          @for (col of row;track colIndex;let colIndex = $index) {
+            <li *ngIf="col" class="border-2 border-amber-500 text-amber-950 bg-amber-200 py-4 px-2 rounded-lg">
+              row {{ rowIndex + 1 }} col {{ colIndex + 1 }}
+            </li>
+          }
+        }
+      </ul>
+    </div>
+  }
 </div>
