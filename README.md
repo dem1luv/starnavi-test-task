@@ -1,6 +1,6 @@
 # StarNavi Test Task 🚀
 
-The StarNavi Test Task app is deployed and accessible at the following link: [StarNavi Test Task](https://lyashket.github.io/starnavi-test-task/)
+The StarNavi Test Task app is deployed and accessible at the following link: [StarNavi Test Task](https://dem1luv.github.io/starnavi-test-task/)
 
 Feel free to explore the deployed app and test its features. If you encounter any issues or have feedback, please don't hesitate to reach out. Enjoy exploring the world of interactive squares! 🎉
 
